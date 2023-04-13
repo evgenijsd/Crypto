@@ -6,8 +6,8 @@
     xmlns:views="clr-namespace:Crypto.Views"
     xmlns:bindableModels="clr-namespace:Crypto.Models.Bindables"
     xmlns:viewModels="clr-namespace:Crypto.ViewModels"
-    x:Class="Crypto.Views.MainPage"
-    x:DataType="viewModels:MainPageViewModel">
+    x:Class="Crypto.Views.SearchPage"
+    x:DataType="viewModels:SearchPageViewModel">
 
     <StackLayout
         BackgroundColor="{DynamicResource BackgroundColor_i2}">
@@ -17,7 +17,7 @@
             RowDefinitions="50, *">
             
             <Label
-                Text="{xct:Translate Top}"
+                Text="{xct:Translate Search}"
                 FontFamily="Barlow-Bold"
                 FontSize="{DynamicResource TSize_i3}"
                 TextColor="{DynamicResource TextColor_i3}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
@@ -40,7 +40,7 @@
                             <DataTemplate
                                 x:DataType="bindableModels:CoinBindableModel">
                                 <Grid
-                                    ColumnDefinitions="Auto, 300, Auto"
+                                    ColumnDefinitions="50, 300, Auto"
                                     Margin="10,15,0,0">
                                     
                                     <Label
@@ -49,29 +49,31 @@
                                         FontSize="{DynamicResource TSize_i5}"
                                         TextColor="{DynamicResource TextColor_i1}"
                                         Margin="5,0,5,0" />
-                                    
+
                                     <StackLayout
                                         Grid.Column="1"
                                         Margin="10,0,0,0">
+                                        
                                         <Label
                                             Text="{Binding Name}"
                                             FontFamily="Barlow-SemiBold"
                                             FontSize="{DynamicResource TSize_i5}"
                                             TextColor="{DynamicResource TextColor_i1}" />
-                                        
+
                                         <Label
                                             Text="{Binding Symbol}"
                                             FontFamily="Barlow-Regular"
                                             FontSize="{DynamicResource TSize_i5}"
                                             TextColor="{DynamicResource TextColor_i1}" />
-                                        
+
                                         <Label
                                             Text="{Binding PriceUsd}"
                                             FontFamily="Barlow-SemiBold"
                                             FontSize="{DynamicResource TSize_i5}"
                                             TextColor="{DynamicResource TextColor_i2}" />
+                                        
                                     </StackLayout>
-                                    
+
                                     <Label
                                         Grid.Column="2"
                                         Text="{Binding ChangePercent24Hr, StringFormat='{0:F2}%'}"
@@ -88,38 +90,12 @@
             </Frame>
 
             <StackLayout
-                Grid.Column="1" Grid.Row="1">
-                <Entry Text="{Binding TopQuantity}"
-                    TextColor="{DynamicResource TextColor_i2}"
-                    FontFamily="Barlow-Bold"
-                    BackgroundColor="{DynamicResource BackgroundColor_i1}"
-                    FontSize="{DynamicResource TSize_i5}" xct:CornerRadiusEffect.CornerRadius="10"
-                    Margin="15,10,15,0" />
-                
+                Grid.Column="1"
+                Grid.Row="1">
+
                 <Button
-                    Text="{xct:Translate TopQuantity}"
-                    Command="{Binding TopCommand}"
-                    TextColor="{DynamicResource TextColor_i2}"
-                    Margin="10"
-                    Padding="10" CornerRadius="10"
-                    BackgroundColor="{DynamicResource appcolor_i1}"
-                    FontFamily="Barlow-Bold"
-                    FontSize="{DynamicResource TSize_i5}" />
-                
-                <Entry
-                    Text="{Binding Search}"
-                    Placeholder="{xct:Translate Placeholder}"
-                    TextColor="{DynamicResource TextColor_i2}"
-                    PlaceholderColor="{DynamicResource TextColor_i3}"
-                    FontFamily="Barlow-Bold"
-                    BackgroundColor="{DynamicResource BackgroundColor_i1}"
-                    FontSize="{DynamicResource TSize_i5}"
-                    xct:CornerRadiusEffect.CornerRadius="10"
-                    Margin="15,20,15,0" />
-                
-                <Button
-                    Text="{xct:Translate Search}"
-                    Command="{Binding SearchCommand}"
+                    Text="{xct:Translate Back}"
+                    Command="{Binding GoBackCommand}"
                     TextColor="{DynamicResource TextColor_i2}"
                     Margin="10"
                     Padding="10"
@@ -127,7 +103,15 @@
                     BackgroundColor="{DynamicResource appcolor_i1}"
                     FontFamily="Barlow-Bold"
                     FontSize="{DynamicResource TSize_i5}" />
-                
+
+                <Label
+                    Text="{xct:Translate NotFound}"
+                    IsVisible="{Binding Currencies.Count, Converter={StaticResource intToBoolConverter}}"
+                    FontFamily="Barlow-SemiBold"
+                    FontSize="{DynamicResource TSize_i5}"
+                    HorizontalOptions="CenterAndExpand"
+                    TextColor="{DynamicResource AppColor_i2}" />
+
             </StackLayout>
         </Grid>
     </StackLayout>

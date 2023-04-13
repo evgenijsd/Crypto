@@ -35,6 +35,7 @@ namespace Crypto
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
             containerRegistry.RegisterForNavigation<CoinPage, CoinPageViewModel>();
+            containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
         }
 
         protected override void OnInitialized()

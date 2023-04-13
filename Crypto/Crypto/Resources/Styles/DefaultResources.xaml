@@ -3,6 +3,7 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:converters="clr-namespace:Crypto.Converters"
     x:Class="Crypto.Resources.Styles.DefaultResources">
 
     <!--  TEXT SIZE  -->
@@ -22,16 +23,8 @@
     <x:Double x:Key="TSize_i7">14</x:Double>
     <!--  12px  -->
     <x:Double x:Key="TSize_i8">12</x:Double>
-    <!--  11px  -->
-    <x:Double x:Key="TSize_i11">11</x:Double>
-    <!--  9px  -->
-    <x:Double x:Key="TSize_i9">9</x:Double>
-    <!--  8px  -->
-    <x:Double x:Key="TSize_i10">8</x:Double>
 
-    <x:Double x:Key="OpacityWhenDisabled_i1">0.5</x:Double>
-    <x:Double x:Key="OpacityWhenDisabled_i2">0.6</x:Double>
-    <x:Double x:Key="OpacityWhenDisabled_i3">0.32</x:Double>
-    <x:Double x:Key="OpacityWhenDisabled_i4">0.21</x:Double>
+    <!-- CONVERTERS -->
+    <converters:IntToBoolConverter x:Key="intToBoolConverter" />
 
 </ResourceDictionary>

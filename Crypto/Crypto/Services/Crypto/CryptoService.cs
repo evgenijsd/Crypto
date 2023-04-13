@@ -95,5 +95,28 @@ namespace Crypto.Services.Crypto
 
             return result;
         }
+
+        public async Task<AOResult<IEnumerable<CoinBindableModel>>> GetSearchAsync(string search)
+        {
+            var result = new AOResult<IEnumerable<CoinBindableModel>>();
+
+            try
+            {
+                var query = $"{Constants.API.HOST_URL}assets?search={search}";
+                var currencies = await _restService.RequestAsync<CoinDataModel<CoinModel>>(HttpMethod.Get, query);
+
+                if (currencies is not null)
+                {
+                    var bindableCurrencies = _mapper.Map<IEnumerable<CoinBindableModel>>(currencies.Data);
+                    result.SetSuccess(bindableCurrencies);
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetMarketsByIdAsync)}", Strings.NotFound, ex);
+            }
+
+            return result;
+        }
     }
 }

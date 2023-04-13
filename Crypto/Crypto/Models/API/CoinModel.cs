@@ -16,16 +16,16 @@ namespace Crypto.Models.API
         [JsonProperty("name")]
         public string Name { get; set; }
         [JsonProperty("supply")]
-        public double Supply { get; set; }
+        public double? Supply { get; set; }
         [JsonProperty("maxSupply")]
         public double? MaxSupply { get; set; }
         [JsonProperty("marketCapUsd")]
-        public double MarketCapUsd { get; set; }
+        public double? MarketCapUsd { get; set; }
         [JsonProperty("volumeUsd24Hr")]
-        public double VolumeUsd24Hr { get; set; }
+        public double? VolumeUsd24Hr { get; set; }
         [JsonProperty("priceUsd")]
-        public double PriceUsd { get; set; }
+        public double? PriceUsd { get; set; }
         [JsonProperty("changePercent24Hr")]
-        public double ChangePercent24Hr { get; set; }
+        public double? ChangePercent24Hr { get; set; }
     }
 }

@@ -10,11 +10,11 @@ using Xamarin.CommunityToolkit.ObjectModel;
 
 namespace Crypto.ViewModels
 {
-    public class MainPageViewModel : BaseViewModel
+    public class SearchPageViewModel : BaseViewModel
     {
         private readonly ICryptoService _cryptoService;
 
-        public MainPageViewModel(
+        public SearchPageViewModel(
             ICryptoService cryptoService,
             INavigationService navigationService)
             : base(navigationService)
@@ -27,13 +27,9 @@ namespace Crypto.ViewModels
         public ObservableCollection<CoinBindableModel> Currencies { get; set; } = new ();
         public CoinBindableModel CoinSelected { get; set; }
         public string Search { get; set; }
-        public int TopQuantity { get; set; } = 100;
 
-        private ICommand _topCommand;
-        public ICommand TopCommand => _topCommand ??= new AsyncCommand(OnTopCommand, allowsMultipleExecutions: false);
-
-        private ICommand _searchCommand;
-        public ICommand SearchCommand => _searchCommand ??= new AsyncCommand(OnSearchCommand, allowsMultipleExecutions: false);
+        private ICommand _goBackCommand;
+        public ICommand GoBackCommand => _goBackCommand ??= new AsyncCommand(OnGoBackCommandAsync, allowsMultipleExecutions: false);
 
         private ICommand _selectCoinCommand;
         public ICommand SelectCoinCommand => _selectCoinCommand ??= new AsyncCommand(OnSelectCoinCommand, allowsMultipleExecutions: false);
@@ -46,11 +42,14 @@ namespace Crypto.ViewModels
         {
             base.OnNavigatedTo(parameters);
 
-            var result = await _cryptoService.GetTopCoinsAsync(TopQuantity);
-
-            if (result.IsSuccess)
+            if (parameters.TryGetValue(Constants.Navigations.SEARCH, out string search))
             {
-                Currencies = new ObservableCollection<CoinBindableModel>(result.Result);
+                var result = await _cryptoService.GetSearchAsync(search);
+
+                if (result.IsSuccess)
+                {
+                    Currencies = new ObservableCollection<CoinBindableModel>(result.Result);
+                }
             }
         }
 
@@ -63,21 +62,9 @@ namespace Crypto.ViewModels
 
         #region -- Private helpers --
 
-        private async Task OnTopCommand()
+        private Task OnGoBackCommandAsync()
         {
-            var result = await _cryptoService.GetTopCoinsAsync(TopQuantity);
-
-            if (result.IsSuccess)
-            {
-                Currencies = new ObservableCollection<CoinBindableModel>(result.Result);
-            }
-        }
-
-        private Task OnSearchCommand()
-        {
-            var parameters = new NavigationParameters() { { Constants.Navigations.SEARCH, Search } };
-
-            return _navigationService.NavigateAsync(nameof(SearchPage), parameters);
+            return _navigationService.GoBackAsync();
         }
 
         private Task OnSelectCoinCommand()

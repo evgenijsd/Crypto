@@ -13,5 +13,6 @@ namespace Crypto.Services.Crypto
         Task<AOResult<IEnumerable<CoinBindableModel>>> GetTopCoinsAsync(int limit);
         Task<AOResult<IEnumerable<HistoryBindableModel>>> GetHistoryByIdAsync(string id);
         Task<AOResult<IEnumerable<MarketBindableModel>>> GetMarketsByIdAsync(string id);
+        Task<AOResult<IEnumerable<CoinBindableModel>>> GetSearchAsync(string search);
     }
 }

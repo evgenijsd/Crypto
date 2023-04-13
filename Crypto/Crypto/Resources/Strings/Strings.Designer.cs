@@ -106,6 +106,15 @@ namespace Crypto.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Enter the search string.
+        /// </summary>
+        internal static string Placeholder {
+            get {
+                return ResourceManager.GetString("Placeholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search.
         /// </summary>
         internal static string Search {
