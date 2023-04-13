@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:BaseContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+    xmlns:local="clr-namespace:Crypto"
+    xmlns:views="clr-namespace:Crypto.Views"
+    xmlns:bindableModels="clr-namespace:Crypto.Models.Bindables"
+    xmlns:viewModels="clr-namespace:Crypto.ViewModels"
+    x:Class="Crypto.Views.CoinPage"
+    x:DataType="viewModels:CoinPageViewModel">
+
+    <StackLayout
+        BackgroundColor="{DynamicResource BackgroundColor_i2}">
+
+        <Grid
+            ColumnDefinitions="500, 500"
+            RowDefinitions="50, *">
+
+            <Label
+                Text="{xct:Translate Currency}"
+                FontFamily="Barlow-Bold"
+                FontSize="{DynamicResource TSize_i3}"
+                TextColor="{DynamicResource TextColor_i3}"
+                HorizontalOptions="CenterAndExpand"
+                VerticalOptions="CenterAndExpand" />
+
+            <StackLayout 
+                Grid.Column="0"
+                Grid.Row="1">
+
+                <Frame                    
+                    BackgroundColor="{DynamicResource BackgroundColor_i1}"
+                    Padding="24"
+                    Margin="10,5,0,5"
+                    CornerRadius="10">
+
+                    <StackLayout>
+                        <Label
+                            Text="{Binding Coin.Name}"
+                            FontFamily="Barlow-SemiBold"
+                            FontSize="{DynamicResource TSize_i3}"
+                            TextColor="{DynamicResource TextColor_i2}"
+                            Margin="5,0,5,0" />
+                        <Label
+                            Text="{Binding Coin.Symbol}"
+                            FontFamily="Barlow-Regular"
+                            FontSize="{DynamicResource TSize_i5}"
+                            TextColor="{DynamicResource TextColor_i1}"
+                            Margin="5,0,5,0" />
+                        <Label
+                            Text="{Binding Coin.PriceUsd}"
+                            FontFamily="Barlow-SemiBold"
+                            FontSize="{DynamicResource TSize_i5}"
+                            TextColor="{DynamicResource TextColor_i2}"
+                            Margin="5,0,5,0" />
+                        <Label
+                            Text="{Binding Coin.VolumeUsd24Hr}"
+                            FontFamily="Barlow-Regular"
+                            FontSize="{DynamicResource TSize_i5}"
+                            TextColor="{DynamicResource TextColor_i1}"
+                            Margin="5,0,5,0" />
+                        <Label
+                            Text="{Binding Coin.ChangePercent24Hr, StringFormat='{0:F2}%'}"
+                            FontFamily="Barlow-Regular"
+                            FontSize="{DynamicResource TSize_i5}"
+                            TextColor="{DynamicResource TextColor_i1}"
+                            Margin="5,0,5,0" />
+                    </StackLayout>
+                </Frame>
+
+                <Label
+                    Text="{xct:Translate Markets}"
+                    FontFamily="Barlow-Bold"
+                    FontSize="{DynamicResource TSize_i3}"
+                    TextColor="{DynamicResource TextColor_i3}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+
+                <Frame
+                    BackgroundColor="{DynamicResource BackgroundColor_i1}"
+                    Padding="24"
+                    Margin="10,5,0,5"
+                    CornerRadius="10">
+
+                    <CollectionView
+                        ItemsSource="{Binding Markets}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate
+                                x:DataType="bindableModels:MarketBindableModel">
+                                <Grid
+                                    ColumnDefinitions="200, Auto"
+                                    Margin="10,15,0,0">
+                                    <Label
+                                        Text="{Binding ExchangeId}"
+                                        FontFamily="Barlow-SemiBold"
+                                        FontSize="{DynamicResource TSize_i5}"
+                                        TextColor="{DynamicResource TextColor_i3}"
+                                        Margin="5,0,5,0" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding PriceUsd}"
+                                        FontFamily="Barlow-SemiBold"
+                                        FontSize="{DynamicResource TSize_i5}"
+                                        TextColor="{DynamicResource TextColor_i2}" />
+                                </Grid>
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+
+            </StackLayout>
+
+            <StackLayout
+                Grid.Column="1" Grid.Row="1">
+                <Button
+                    Text="{xct:Translate Back}"
+                    Command="{Binding GoBackCommand}"
+                    TextColor="{DynamicResource TextColor_i2}"
+                    Margin="10"
+                    Padding="10"
+                    CornerRadius="10"
+                    BackgroundColor="{DynamicResource appcolor_i1}"
+                    FontFamily="Barlow-Bold"
+                    FontSize="{DynamicResource TSize_i5}" />
+
+                <Label
+                    Text="{xct:Translate History}"
+                    FontFamily="Barlow-Bold"
+                    FontSize="{DynamicResource TSize_i3}"
+                    TextColor="{DynamicResource TextColor_i3}"
+                    HorizontalOptions="CenterAndExpand"
+                    VerticalOptions="CenterAndExpand" />
+                
+                <Frame
+                    BackgroundColor="{DynamicResource BackgroundColor_i1}"
+                    Padding="24"
+                    Margin="10,10,0,10"
+                    CornerRadius="10">
+
+                    <CollectionView
+                        ItemsSource="{Binding History}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate
+                                x:DataType="bindableModels:HistoryBindableModel">
+                                <Grid
+                                    ColumnDefinitions="200, Auto"
+                                    Margin="10,15,0,0">
+                                    <Label
+                                        Text="{Binding Time, StringFormat={x:Static local:Constants+Formats.SHORT_DATE_FORMAT}}"
+                                        FontFamily="Barlow-SemiBold"
+                                        FontSize="{DynamicResource TSize_i5}"
+                                        TextColor="{DynamicResource TextColor_i3}"
+                                        Margin="5,0,5,0" />
+                                    <Label
+                                        Grid.Column="1"
+                                        Text="{Binding PriceUsd}"
+                                        FontFamily="Barlow-SemiBold"
+                                        FontSize="{DynamicResource TSize_i5}"
+                                        TextColor="{DynamicResource TextColor_i2}" />
+                                </Grid>
+                            </DataTemplate>
+
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Frame>
+            </StackLayout>
+        </Grid>
+    </StackLayout>
+
+</views:BaseContentPage>

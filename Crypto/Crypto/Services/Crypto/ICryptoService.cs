@@ -11,6 +11,7 @@ namespace Crypto.Services.Crypto
     public interface ICryptoService
     {
         Task<AOResult<IEnumerable<CoinBindableModel>>> GetTopCoinsAsync(int limit);
-        Task<AOResult<CoinModel>> GetCurrencyByIdAsync(string id);
+        Task<AOResult<IEnumerable<HistoryBindableModel>>> GetHistoryByIdAsync(string id);
+        Task<AOResult<IEnumerable<MarketBindableModel>>> GetMarketsByIdAsync(string id);
     }
 }

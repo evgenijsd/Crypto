@@ -6,7 +6,7 @@
     xmlns:views="clr-namespace:Crypto.Views"
     xmlns:bindableModels="clr-namespace:Crypto.Models.Bindables"
     xmlns:viewModels="clr-namespace:Crypto.ViewModels"
-    x:Class="Crypto.MainPage"
+    x:Class="Crypto.Views.MainPage"
     x:DataType="viewModels:MainPageViewModel">
 
     <StackLayout
@@ -42,12 +42,14 @@
                                 <Grid
                                     ColumnDefinitions="Auto, 300, Auto"
                                     Margin="10,15,0,0">
+                                    
                                     <Label
                                         Text="{Binding Rank}"
                                         FontFamily="Barlow-SemiBold"
                                         FontSize="{DynamicResource TSize_i5}"
                                         TextColor="{DynamicResource TextColor_i1}"
                                         Margin="5,0,5,0" />
+                                    
                                     <StackLayout
                                         Grid.Column="1"
                                         Margin="10,0,0,0">
@@ -56,17 +58,20 @@
                                             FontFamily="Barlow-SemiBold"
                                             FontSize="{DynamicResource TSize_i5}"
                                             TextColor="{DynamicResource TextColor_i1}" />
+                                        
                                         <Label
                                             Text="{Binding Symbol}"
                                             FontFamily="Barlow-Regular"
                                             FontSize="{DynamicResource TSize_i5}"
                                             TextColor="{DynamicResource TextColor_i1}" />
+                                        
                                         <Label
                                             Text="{Binding PriceUsd}"
                                             FontFamily="Barlow-SemiBold"
                                             FontSize="{DynamicResource TSize_i5}"
                                             TextColor="{DynamicResource TextColor_i2}" />
                                     </StackLayout>
+                                    
                                     <Label
                                         Grid.Column="2"
                                         Text="{Binding ChangePercent24Hr, StringFormat='{0:F2}%'}"
@@ -83,13 +88,14 @@
             </Frame>
 
             <StackLayout
-                Grid.Column="1">
+                Grid.Column="1" Grid.Row="1">
                 <Entry Text="{Binding TopQuantity}"
                     TextColor="{DynamicResource TextColor_i2}"
                     FontFamily="Barlow-Bold"
                     BackgroundColor="{DynamicResource BackgroundColor_i1}"
                     FontSize="{DynamicResource TSize_i5}" xct:CornerRadiusEffect.CornerRadius="10"
-                    Margin="15,60,15,0" />
+                    Margin="15,10,15,0" />
+                
                 <Button
                     Text="{xct:Translate TopQuantity}"
                     Command="{Binding TopCommand}"
@@ -99,6 +105,7 @@
                     BackgroundColor="{DynamicResource appcolor_i1}"
                     FontFamily="Barlow-Bold"
                     FontSize="{DynamicResource TSize_i5}" />
+                
                 <Entry
                     Text="{Binding Search}"
                     TextColor="{DynamicResource TextColor_i2}"
@@ -107,6 +114,7 @@
                     FontSize="{DynamicResource TSize_i5}"
                     xct:CornerRadiusEffect.CornerRadius="10"
                     Margin="15,20,15,0" />
+                
                 <Button
                     Text="{xct:Translate Search}"
                     Command="{Binding SearchCommand}"
@@ -117,6 +125,7 @@
                     BackgroundColor="{DynamicResource appcolor_i1}"
                     FontFamily="Barlow-Bold"
                     FontSize="{DynamicResource TSize_i5}" />
+                
             </StackLayout>
         </Grid>
     </StackLayout>

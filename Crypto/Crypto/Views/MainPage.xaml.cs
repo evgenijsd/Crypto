@@ -1,6 +1,6 @@
 ﻿using Crypto.Views;
 
-namespace Crypto
+namespace Crypto.Views
 {
     public partial class MainPage : BaseContentPage
     {

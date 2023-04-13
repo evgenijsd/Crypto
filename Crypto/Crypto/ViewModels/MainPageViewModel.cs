@@ -1,5 +1,6 @@
 ﻿using Crypto.Models.Bindables;
 using Crypto.Services.Crypto;
+using Crypto.Views;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -79,7 +80,9 @@ namespace Crypto.ViewModels
 
         private Task OnSelectCoinCommand()
         {
-            return Task.CompletedTask;
+            var parameters = new NavigationParameters() { { Constants.Navigations.COIN, CoinSelected } };
+
+            return _navigationService.NavigateAsync(nameof(CoinPage), parameters);
         }
 
         #endregion

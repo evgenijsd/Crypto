@@ -6,6 +6,7 @@ using Crypto.Resources.Strings;
 using Crypto.Services.Rest;
 using Newtonsoft.Json;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -33,11 +34,11 @@ namespace Crypto.Services.Crypto
             try
             {
                 var query = $"{Constants.API.HOST_URL}assets?limit={limit}";
-                var currencies = await _restService.RequestAsync<CoinDataModel>(HttpMethod.Get, query);
+                var currencies = await _restService.RequestAsync<CoinDataModel<CoinModel>>(HttpMethod.Get, query);
 
                 if (currencies is not null)
                 {
-                    var bindableCurrencies = _mapper.Map<IEnumerable<CoinBindableModel>>(currencies.Coins);
+                    var bindableCurrencies = _mapper.Map<IEnumerable<CoinBindableModel>>(currencies.Data);
                     result.SetSuccess(bindableCurrencies);
                 }
             }
@@ -49,23 +50,47 @@ namespace Crypto.Services.Crypto
             return result;
         }
 
-        public async Task<AOResult<CoinModel>> GetCurrencyByIdAsync(string id)
+        public async Task<AOResult<IEnumerable<HistoryBindableModel>>> GetHistoryByIdAsync(string id)
         {
-            var result = new AOResult<CoinModel>();
+            var result = new AOResult<IEnumerable<HistoryBindableModel>>();
 
             try
             {
-                var query = $"{Constants.API.HOST_URL}coins/{id}";
-                var currency = await _restService.RequestAsync<CoinModel>(HttpMethod.Get, query);
+                var query = $"{Constants.API.HOST_URL}assets/{id}/history?interval=d1";
+                var history = await _restService.RequestAsync<CoinDataModel<HistoryModel>>(HttpMethod.Get, query);
 
-                if (currency is not null)
+                if (history is not null)
                 {
-                    result.SetSuccess(currency);
+                    var bindableHistory = _mapper.Map<IEnumerable<HistoryBindableModel>>(history.Data);
+                    result.SetSuccess(bindableHistory);
                 }
             }
             catch (Exception ex)
             {
-                result.SetError($"{nameof(GetCurrencyByIdAsync)}", Strings.NotFound, ex);
+                result.SetError($"{nameof(GetHistoryByIdAsync)}", Strings.NotFound, ex);
+            }
+
+            return result;
+        }
+
+        public async Task<AOResult<IEnumerable<MarketBindableModel>>> GetMarketsByIdAsync(string id)
+        {
+            var result = new AOResult<IEnumerable<MarketBindableModel>>();
+
+            try
+            {
+                var query = $"{Constants.API.HOST_URL}assets/{id}/markets";
+                var markets = await _restService.RequestAsync<CoinDataModel<MarketModel>>(HttpMethod.Get, query);
+
+                if (markets is not null)
+                {
+                    var bindableMarkets = _mapper.Map<IEnumerable<MarketBindableModel>>(markets.Data);
+                    result.SetSuccess(bindableMarkets);
+                }
+            }
+            catch (Exception ex)
+            {
+                result.SetError($"{nameof(GetMarketsByIdAsync)}", Strings.NotFound, ex);
             }
 
             return result;
