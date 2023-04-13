@@ -79,11 +79,29 @@ namespace Crypto.Resources.Strings {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Dark/Light.
+        /// </summary>
+        internal static string DarkLight {
+            get {
+                return ResourceManager.GetString("DarkLight", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to History.
         /// </summary>
         internal static string History {
             get {
                 return ResourceManager.GetString("History", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string Language {
+            get {
+                return ResourceManager.GetString("Language", resourceCulture);
             }
         }
         

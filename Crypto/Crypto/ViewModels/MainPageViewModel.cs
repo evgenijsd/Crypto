@@ -1,18 +1,27 @@
 ﻿using Crypto.Models.Bindables;
+using Crypto.Resources.Strings;
+using Crypto.Resources.Styles;
 using Crypto.Services.Crypto;
 using Crypto.Views;
 using Prism.Navigation;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Globalization;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.CommunityToolkit.ObjectModel;
+using Xamarin.Forms;
 
 namespace Crypto.ViewModels
 {
     public class MainPageViewModel : BaseViewModel
     {
         private readonly ICryptoService _cryptoService;
+
+        private bool _isLightTheme;
+        private bool _isUaLang;
 
         public MainPageViewModel(
             ICryptoService cryptoService,
@@ -37,6 +46,12 @@ namespace Crypto.ViewModels
 
         private ICommand _selectCoinCommand;
         public ICommand SelectCoinCommand => _selectCoinCommand ??= new AsyncCommand(OnSelectCoinCommand, allowsMultipleExecutions: false);
+
+        private ICommand _updateThemeCommand;
+        public ICommand UpdateThemeCommand => _updateThemeCommand ??= new AsyncCommand(OnUpdateThemeCommand, allowsMultipleExecutions: false);
+
+        private ICommand _updateLanguageCommand;
+        public ICommand UpdateLanguageCommand => _updateLanguageCommand ??= new AsyncCommand(OnUpdateLanguageCommand, allowsMultipleExecutions: false);
 
         #endregion
 
@@ -85,6 +100,40 @@ namespace Crypto.ViewModels
             var parameters = new NavigationParameters() { { Constants.Navigations.COIN, CoinSelected } };
 
             return _navigationService.NavigateAsync(nameof(CoinPage), parameters);
+        }
+
+        private Task OnUpdateThemeCommand()
+        {
+            if (_isLightTheme)
+            {
+                Application.Current.Resources.MergedDictionaries.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(new DarkModeResources());
+            }
+            else
+            {
+                Application.Current.Resources.MergedDictionaries.Clear();
+                Application.Current.Resources.MergedDictionaries.Add(new LightModeResources());
+            }
+
+            _isLightTheme = !_isLightTheme;
+
+            return Task.CompletedTask;
+        }
+
+        private Task OnUpdateLanguageCommand()
+        {
+            if (_isUaLang)
+            {
+                LocalizationResourceManager.Current.CurrentCulture = new CultureInfo("en-US");
+            }
+            else
+            {
+                LocalizationResourceManager.Current.CurrentCulture = new CultureInfo("uk-UA");
+            }
+
+            _isUaLang = !_isUaLang;
+
+            return Task.CompletedTask;
         }
 
         #endregion

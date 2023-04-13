@@ -42,9 +42,10 @@ namespace Crypto
         {
             InitializeComponent();
 
+            LocalizationResourceManager.Current.PropertyChanged += (sender, e) => Strings.Culture = LocalizationResourceManager.Current.CurrentCulture;
             LocalizationResourceManager.Current.Init(Strings.ResourceManager);
 
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+            LocalizationResourceManager.Current.CurrentCulture = new CultureInfo("en");
         }
 
 

@@ -8,8 +8,8 @@
     <prism:PrismApplication.Resources>
         <styles:DefaultResources>
             <styles:DefaultResources.MergedDictionaries>
-                <styles:DarkModeResources />
                 <styles:LightModeResources />
+                <styles:DarkModeResources />
             </styles:DefaultResources.MergedDictionaries>
         </styles:DefaultResources>
     </prism:PrismApplication.Resources>

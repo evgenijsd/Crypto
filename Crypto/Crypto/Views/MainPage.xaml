@@ -18,7 +18,7 @@
             
             <Label
                 Text="{xct:Translate Top}"
-                FontFamily="Barlow-Bold"
+                FontFamily="OpenSans-Bold"
                 FontSize="{DynamicResource TSize_i3}"
                 TextColor="{DynamicResource TextColor_i3}" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand"/>
             
@@ -45,7 +45,7 @@
                                     
                                     <Label
                                         Text="{Binding Rank}"
-                                        FontFamily="Barlow-SemiBold"
+                                        FontFamily="OpenSans-SemiBold"
                                         FontSize="{DynamicResource TSize_i5}"
                                         TextColor="{DynamicResource TextColor_i1}"
                                         Margin="5,0,5,0" />
@@ -55,19 +55,19 @@
                                         Margin="10,0,0,0">
                                         <Label
                                             Text="{Binding Name}"
-                                            FontFamily="Barlow-SemiBold"
+                                            FontFamily="OpenSans-SemiBold"
                                             FontSize="{DynamicResource TSize_i5}"
                                             TextColor="{DynamicResource TextColor_i1}" />
                                         
                                         <Label
                                             Text="{Binding Symbol}"
-                                            FontFamily="Barlow-Regular"
+                                            FontFamily="OpenSans-Regular"
                                             FontSize="{DynamicResource TSize_i5}"
                                             TextColor="{DynamicResource TextColor_i1}" />
                                         
                                         <Label
                                             Text="{Binding PriceUsd}"
-                                            FontFamily="Barlow-SemiBold"
+                                            FontFamily="OpenSans-SemiBold"
                                             FontSize="{DynamicResource TSize_i5}"
                                             TextColor="{DynamicResource TextColor_i2}" />
                                     </StackLayout>
@@ -91,7 +91,7 @@
                 Grid.Column="1" Grid.Row="1">
                 <Entry Text="{Binding TopQuantity}"
                     TextColor="{DynamicResource TextColor_i2}"
-                    FontFamily="Barlow-Bold"
+                    FontFamily="OpenSans-Bold"
                     BackgroundColor="{DynamicResource BackgroundColor_i1}"
                     FontSize="{DynamicResource TSize_i5}" xct:CornerRadiusEffect.CornerRadius="10"
                     Margin="15,10,15,0" />
@@ -103,7 +103,7 @@
                     Margin="10"
                     Padding="10" CornerRadius="10"
                     BackgroundColor="{DynamicResource appcolor_i1}"
-                    FontFamily="Barlow-Bold"
+                    FontFamily="OpenSans-Bold"
                     FontSize="{DynamicResource TSize_i5}" />
                 
                 <Entry
@@ -111,7 +111,7 @@
                     Placeholder="{xct:Translate Placeholder}"
                     TextColor="{DynamicResource TextColor_i2}"
                     PlaceholderColor="{DynamicResource TextColor_i3}"
-                    FontFamily="Barlow-Bold"
+                    FontFamily="OpenSans-Bold"
                     BackgroundColor="{DynamicResource BackgroundColor_i1}"
                     FontSize="{DynamicResource TSize_i5}"
                     xct:CornerRadiusEffect.CornerRadius="10"
@@ -125,9 +125,31 @@
                     Padding="10"
                     CornerRadius="10"
                     BackgroundColor="{DynamicResource appcolor_i1}"
-                    FontFamily="Barlow-Bold"
+                    FontFamily="OpenSans-Bold"
                     FontSize="{DynamicResource TSize_i5}" />
-                
+
+                <Button
+                    Text="{xct:Translate DarkLight}"
+                    Command="{Binding UpdateThemeCommand}"
+                    TextColor="{DynamicResource TextColor_i2}"
+                    Margin="10,150,10,10"
+                    Padding="10"
+                    CornerRadius="10"
+                    BackgroundColor="{DynamicResource appcolor_i1}"
+                    FontFamily="OpenSans-Bold"
+                    FontSize="{DynamicResource TSize_i5}" />
+
+                <Button
+                    Text="{xct:Translate Language}"
+                    Command="{Binding UpdateLanguageCommand}"
+                    TextColor="{DynamicResource TextColor_i2}"
+                    Margin="10"
+                    Padding="10"
+                    CornerRadius="10"
+                    BackgroundColor="{DynamicResource appcolor_i1}"
+                    FontFamily="OpenSans-Bold"
+                    FontSize="{DynamicResource TSize_i5}" />
+
             </StackLayout>
         </Grid>
     </StackLayout>
