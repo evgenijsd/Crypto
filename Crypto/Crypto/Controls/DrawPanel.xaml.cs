@@ -90,7 +90,8 @@ namespace Crypto.Controls
         {
             if (Data is not null)
             {
-                SKCanvas canvas = args.Surface.Canvas;
+                var info = args.Info;
+                var canvas = args.Surface.Canvas;
                 canvas.Clear(BackColor.ToSKColor());
 
                 SKPaint paint = new SKPaint
@@ -104,8 +105,8 @@ namespace Crypto.Controls
                 var max = Data.Max();
                 var min = Data.Min();                
                 var count = Data.Count();
-                var height = canvas.LocalClipBounds.Height;
-                var width = canvas.LocalClipBounds.Width / (float)count;
+                var height = info.Height;
+                var width = info.Width / (float)count;
                 var delta = (float)height / (max - min);
 
                 for ( var i = 1; i < count; i++ )
@@ -118,13 +119,6 @@ namespace Crypto.Controls
                     canvas.DrawLine(startX, startY, endX, endY, paint);
                 }
             }
-        }
-
-        private SKPoint ConvertToPixel(Point pt)
-        {
-            return new(
-                (float)(canvasView.CanvasSize.Width * pt.X / canvasView.Width),
-                (float)(canvasView.CanvasSize.Height * pt.Y / canvasView.Height));
         }
 
         #endregion
