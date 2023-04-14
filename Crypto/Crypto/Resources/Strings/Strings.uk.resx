@@ -120,6 +120,9 @@
   <data name="Back" xml:space="preserve">
     <value>Назад</value>
   </data>
+  <data name="Chart" xml:space="preserve">
+    <value>Графік</value>
+  </data>
   <data name="Currency" xml:space="preserve">
     <value>Валюта</value>
   </data>

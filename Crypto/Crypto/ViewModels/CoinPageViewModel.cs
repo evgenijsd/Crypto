@@ -1,6 +1,7 @@
 ﻿using Crypto.Models.API;
 using Crypto.Models.Bindables;
 using Crypto.Services.Crypto;
+using Crypto.Views;
 using Prism.Navigation;
 using System;
 using System.Collections.Generic;
@@ -33,6 +34,9 @@ namespace Crypto.ViewModels
 
         private ICommand _goBackCommand;
         public ICommand GoBackCommand => _goBackCommand ??= new AsyncCommand(OnGoBackCommandAsync, allowsMultipleExecutions: false);
+
+        private ICommand _chartCommand;
+        public ICommand ChartCommand => _chartCommand ??= new AsyncCommand(OnChartCommandAsync, allowsMultipleExecutions: false);
 
         #endregion
 
@@ -68,6 +72,13 @@ namespace Crypto.ViewModels
         private Task OnGoBackCommandAsync()
         {
             return _navigationService.GoBackAsync();
+        }
+
+        private Task OnChartCommandAsync()
+        {
+            var parameters = new NavigationParameters() { { Constants.Navigations.CHART, Coin } };
+
+            return _navigationService.NavigateAsync(nameof(ChartPage), parameters);
         }
 
         #endregion

@@ -114,9 +114,21 @@
 
             <StackLayout
                 Grid.Column="1" Grid.Row="1">
+                
                 <Button
                     Text="{xct:Translate Back}"
                     Command="{Binding GoBackCommand}"
+                    TextColor="{DynamicResource TextColor_i2}"
+                    Margin="10"
+                    Padding="10"
+                    CornerRadius="10"
+                    BackgroundColor="{DynamicResource appcolor_i1}"
+                    FontFamily="OpenSans-Bold"
+                    FontSize="{DynamicResource TSize_i5}" />
+                
+                <Button
+                    Text="{xct:Translate Chart}"
+                    Command="{Binding ChartCommand}"
                     TextColor="{DynamicResource TextColor_i2}"
                     Margin="10"
                     Padding="10"

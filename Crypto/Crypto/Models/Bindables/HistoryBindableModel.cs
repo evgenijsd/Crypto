@@ -8,7 +8,7 @@ namespace Crypto.Models.Bindables
 {
     public class HistoryBindableModel : BindableBase
     {
-        public string PriceUsd { get; set; }
+        public double PriceUsd { get; set; }
         public DateTime Time { get; set; }
     }
 }

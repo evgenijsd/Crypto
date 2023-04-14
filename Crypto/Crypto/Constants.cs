@@ -11,6 +11,7 @@ namespace Crypto
             public const string MAIN = "MAIN";
             public const string COIN = "COIN";
             public const string SEARCH = "SEARCH";
+            public const string CHART = "CHART";
         }
 
         public static class Formats
