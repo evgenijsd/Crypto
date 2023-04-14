@@ -8,7 +8,7 @@
 
   <Identity
     Name="BCDD06DF-E241-4921-AFA9-48932017D74A"
-    Publisher="CN=crm28850"
+    Publisher="CN=evgenij"
     Version="1.0.1.0" />
 
   <mp:PhoneIdentity PhoneProductId="ec0cc741-fd3e-485c-81be-68815c480690" PhonePublisherId="00000000-0000-0000-0000-000000000000"/>
@@ -51,5 +51,6 @@
 
   <Capabilities>
     <Capability Name="internetClient" />
+    <Capability Name="privateNetworkClientServer"/>
   </Capabilities>
 </Package>

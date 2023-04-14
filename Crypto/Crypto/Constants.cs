@@ -8,11 +8,15 @@ namespace Crypto
     {
         public static class Navigations
         {
-            public const string MAIN = "MAIN";            
+            public const string MAIN = "MAIN";
+            public const string COIN = "COIN";
+            public const string SEARCH = "SEARCH";
+            public const string CHART = "CHART";
         }
 
         public static class Formats
         {
+            public const string SHORT_DATE_FORMAT = "{0:dd.MM.yyyy}";
             public const string DATETIME_JSON_FORMAT = "yyyy-MM-ddTHH:mm:ss.ffffffZ";
         }
 

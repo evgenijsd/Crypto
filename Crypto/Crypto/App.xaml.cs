@@ -5,10 +5,12 @@ using Crypto.Resources.Strings;
 using Crypto.Services.Crypto;
 using Crypto.Services.Rest;
 using Crypto.ViewModels;
+using Crypto.Views;
 using Prism;
 using Prism.Ioc;
 using Prism.Navigation;
 using Prism.Unity;
+using System;
 using System.Globalization;
 using Xamarin.CommunityToolkit.Helpers;
 using Xamarin.Forms;
@@ -32,15 +34,19 @@ namespace Crypto
 
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage, MainPageViewModel>();
+            containerRegistry.RegisterForNavigation<CoinPage, CoinPageViewModel>();
+            containerRegistry.RegisterForNavigation<SearchPage, SearchPageViewModel>();
+            containerRegistry.RegisterForNavigation<ChartPage, ChartPageViewModel>();
         }
 
         protected override void OnInitialized()
         {
             InitializeComponent();
 
+            LocalizationResourceManager.Current.PropertyChanged += (sender, e) => Strings.Culture = LocalizationResourceManager.Current.CurrentCulture;
             LocalizationResourceManager.Current.Init(Strings.ResourceManager);
 
-            CultureInfo.DefaultThreadCurrentCulture = new CultureInfo("en-US");
+            LocalizationResourceManager.Current.CurrentCulture = new CultureInfo("en");
         }
 
 
@@ -68,7 +74,10 @@ namespace Crypto
         {
             return new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<CoinModel, CoinBindableModel>().ReverseMap();
+                cfg.CreateMap<CoinModel, CoinBindableModel>();
+                cfg.CreateMap<HistoryModel, HistoryBindableModel>()
+                    .ForMember(x => x.Time, x => x.MapFrom(y => new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc).AddMilliseconds(y.Time).ToLocalTime()));
+                cfg.CreateMap<MarketModel, MarketBindableModel>();
             }).CreateMapper();  
         }
 

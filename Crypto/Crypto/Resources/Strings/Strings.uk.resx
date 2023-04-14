@@ -118,39 +118,39 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Back" xml:space="preserve">
-    <value>Back</value>
+    <value>Назад</value>
   </data>
   <data name="Chart" xml:space="preserve">
-    <value>Chart</value>
+    <value>Графік</value>
   </data>
   <data name="Currency" xml:space="preserve">
-    <value>Currency</value>
+    <value>Валюта</value>
   </data>
   <data name="DarkLight" xml:space="preserve">
-    <value>Dark/Light</value>
+    <value>Темна/Світла</value>
   </data>
   <data name="History" xml:space="preserve">
-    <value>History</value>
+    <value>Історія</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Language</value>
+    <value>Мова</value>
   </data>
   <data name="Markets" xml:space="preserve">
-    <value>Markets</value>
+    <value>Ринки</value>
   </data>
   <data name="NotFound" xml:space="preserve">
-    <value>Not Found</value>
+    <value>Не знайдено</value>
   </data>
   <data name="Placeholder" xml:space="preserve">
-    <value>Enter the search string</value>
+    <value>Введіть рядок пошуку</value>
   </data>
   <data name="Search" xml:space="preserve">
-    <value>Search</value>
+    <value>Пошук</value>
   </data>
   <data name="Top" xml:space="preserve">
-    <value>Top Cryptocurrencies</value>
+    <value>Найкращі криптовалюти</value>
   </data>
   <data name="TopQuantity" xml:space="preserve">
-    <value>Top quantity</value>
+    <value>Максимальна кількість</value>
   </data>
 </root>

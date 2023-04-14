@@ -2,9 +2,9 @@
 
 namespace Crypto.Views
 {
-    public partial class MainPage : BaseContentPage
+    public partial class SearchPage : BaseContentPage
     {
-        public MainPage()
+        public SearchPage()
         {
             InitializeComponent();
         }
